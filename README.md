@@ -11,7 +11,7 @@ Application for using midi-controllers in an easy and convinient way across max/
   
   3b. Alternatively, download all files and run the example ofapp to see how to call values (easy.rec("s1")), and to label your knob in the application. 
    
-
+<a href="url"><img src="https://github.com/shaltiel/ofEasycontroller/blob/master/Hanging.gif" align="center" height="270" width="480" ></a>
 # Functionality
 * Easymapping of the controller.
 * Labeling knobs and pads.
@@ -19,8 +19,10 @@ Application for using midi-controllers in an easy and convinient way across max/
 * Applying Presets.
 * Control both Max and OF together.
 
-<a href="url"><img src="http://42noir.com/wp-content/uploads/2016/12/3-screenshot@2x-1.png" align="left" height="200" width="300" ></a>
 
+
+
+<a href="url"><img src="http://42noir.com/wp-content/uploads/2016/12/3-screenshot@2x-1.png" align="left" height="200" width="300" ></a>
 
 
 
