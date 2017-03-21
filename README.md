@@ -3,7 +3,7 @@ Application for using midi-controllers in a convinient way across max/msp and op
 
 # Instrouction for using it with openframework:
 
-    1. Download the application in www.42noir.com/es
+    1. Download the application in http://www.42noir.com/es
     2. Follow the guide of how to assigne your controller and also you can learn how to use it with Max. 
     3. Download the dependant class files: escon.h and escon.cpp and add them to your openframework target or programm.
     4. Download all files to run an example ofapp, to see how to call values (easy.rec("s1")), and to label your knob in the application from the controller.
@@ -14,6 +14,9 @@ Application for using midi-controllers in a convinient way across max/msp and op
 * Re-mapping values.
 * Applying Presets.
 * Control both Max and OF together.
+[![Alt text for your video]
+(https://www.youtube.com/watch?time_continue=446&v=en2tB_PJq-0)](https://www.youtube.com/watch?time_continue=446&v=en2tB_PJq-0)
+
 
 
 
