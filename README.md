@@ -1,7 +1,7 @@
 # Easycontroller (beta)
 Application for using midi-controllers in an easy and convinient way across max/msp and Openframework (Only for Mac users). The idea is to be able to master your midi-controller in live music and visual, independently of the platform used. Initially,  map your midi-controller by touching the knobs and click on the desired knob in th panel. Then you set to work with the  paramters directly in your OF app or Max patch (all can be found in the video here <a href="https://www.youtube.com/watch?v=en2tB_PJq-0">User Guide -Easycontroller</a>). Your knobs can be labeled for each program/song/visualization and you can easily re-map the values, and finally create presets to update your midi-controller for each chapter of your performance. We perform with this tool at 42Noir, we've tested it mostely for Novation and Yamaha controllers, but if your controller has unique midi formating (:/) contact us and we would try to sort it out for you.   
 
-# Instruction for Openframework:
+# Instruction for Openframework
 
    1. Download the application in
  <a href="http://www.42noir.com/es">http://www.42noir.com/es</a>
