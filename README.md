@@ -5,9 +5,10 @@ Application for using midi-controllers in a convinient way across max/msp and op
 
    1. Download the application in
  <a href="http://www.42noir.com/es">http://www.42noir.com/es</a>
-   2. Follow the guide of how to assigne your controller and also you can learn how to use it with Max. 
-   3. Download the dependant class files: escon.h and escon.cpp and add them to your openframework target or programm.
-   4. Download all files to run an example ofapp, to see how to call values (easy.rec("s1")), and to label your knob in the application from the controller.
+   2. Follow the guide of how to install and assigne your midi-controller for the use, and also whatch how you can use it with Max/MSP. 
+   3. Download the dependant class files: escon.h and escon.cpp and add them to your openframework target files or use it next to a specific programm. 
+   4. Download all files to run an example ofapp, to see how to call values (easy.rec("s1")), and to label your knob in the application from the controller. Otherwise, in your ofapp.h include the "escon.h" and create an object member of escon (e.g. escon easy). Then use the member functions label, rec, snd, to recieve parameters from the controller.
+   
 
 # Functionality
 * Easymapping of the controller.
