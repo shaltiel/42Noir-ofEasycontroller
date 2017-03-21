@@ -1,5 +1,5 @@
 # Easycontroller
-Application for using midi-controllers in a convinient way across max/msp and openframework (Only for Mac users). Allows also communication from max to openframework. 
+Application for using midi-controllers in a convinient way across max/msp and openframework (Only for Mac users). Allows also easy communication between Max and Openframework. 
 
 # Instrouction for using it with openframework:
 
