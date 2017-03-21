@@ -2,8 +2,6 @@
 #include <sys/msg.h>
 #include "ofMain.h"
 #include "escon.h"
-#define BUF 32
-#define MSGSZ 128
 
 class ofApp : public ofBaseApp{
 	public:
