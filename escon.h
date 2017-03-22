@@ -1,8 +1,8 @@
 #pragma once
 #include <sys/msg.h>
 #include <string>
-#define BUF 32
-#define MSGSZ 128
+#define BSZ 16
+#define MSZ 64
 using namespace std;
 class escon
 {
@@ -10,12 +10,12 @@ class escon
 private:
     struct message {
         long type;
-        char text[128];
+        char text[MSZ];
     } msg;
     long msgtyp = 1;
     typedef struct masgbuf {
         long    mtype;
-        char    mtext[MSGSZ];
+        char    mtext[MSZ];
     } message_buf;
     int msgid;
     int msgids;
@@ -24,7 +24,7 @@ private:
     int msgflg;
     message_buf sbuf;
     size_t buf_length,sbuf_length;
-    int indexin[200];
+    int indexin[42];
     
 public:
     escon();
@@ -36,7 +36,12 @@ public:
     int rec(string);
     void snd(string,int);
     void snd(string,float);
+    void snd(int,int);
     void label(string,string); //send label to controller
+    void press_preset(string,int);
     int table(string); //int index to string index
+    int hash(int);
+    int re_hash(int);
+    void all_s(int); void all_p(int);
 };
 

@@ -24,12 +24,6 @@ escon::escon()
     char * escon::rec()//receiving raw messages.
     {
         msg.text[0]='\0';
-        char buf[128];//would be the buffer who reads
-        char seps[] = " ";//for choping the string
-        buf[0]='\0';
-        int var; char vars[32];
-
-        int i = 0;
         int getting=msgrcv(msgid, &msg, sizeof(msg)-sizeof(msgtyp), msgtyp, MSG_NOERROR | IPC_NOWAIT);
         return msg.text;
     }
@@ -38,11 +32,11 @@ escon::escon()
     int   escon::rec(int index)
     {
         msg.text[0]='\0';
-        char buf[128];//would be the buffer who reads
+        char buf[MSZ];//would be the buffer who reads
         char seps[] = " ";//for choping the string
         buf[0]='\0';
-        int var; char vars[32];
-        int input[2]={-1,-1};
+        int var; char vars[BSZ];
+        int input[2]={-1,-1};//intial
         
         int i = 0;
         int getting=msgrcv(msgid, &msg, sizeof(msg)-sizeof(msgtyp), msgtyp, MSG_NOERROR | IPC_NOWAIT);
@@ -62,9 +56,9 @@ escon::escon()
             token = strtok (NULL, seps);//next token
         }
         
-        indexin[input[0]]=input[1]; //updating channel
+        indexin[hash(input[0])]=input[1]; //updating channel
         
-        return indexin[index];
+        return indexin[hash(index)];
     }
     
     //same as before but now overloaded for a range
@@ -92,12 +86,12 @@ escon::escon()
     void escon::snd(string c_inputs, int val)
     {
         int channel=table(c_inputs);
-        char  ch[32];
+        char  ch[BSZ];
         sprintf(ch,"%d",channel);
         char  ch2[8];
         sprintf(ch2, "%d",val);
         strcat(ch," "); strcat(ch,ch2);
-        char out0[32]="\0";
+        char out0[BSZ]="\0";
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
@@ -108,35 +102,56 @@ escon::escon()
         int channel=table(c_inputs);
         
         
-        char  ch[32];
+        char  ch[BSZ];
         sprintf(ch,"%d",channel);
         char  ch2[8];
         sprintf(ch2, "%3.*f", 6,val);
         strcat(ch," "); strcat(ch,ch2);
-        char out0[32]="\0";
+        char out0[BSZ]="\0";
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
         msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
     }
+    void escon::snd(int channel, int val)
+    {
+        char  ch[BSZ];
+        sprintf(ch,"%d",channel);
+        char  ch2[8];
+        sprintf(ch2, "%d",val);
+        strcat(ch," "); strcat(ch,ch2);
+        char out0[BSZ]="\0";
+        strcpy(out0,ch);
+        (void) strcpy(sbuf.mtext, out0);
+        sbuf_length = strlen(sbuf.mtext) + 1 ;
+        msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);    }
+
     void escon::label(string c_inputs, string name)
     {
         int channel=table(c_inputs);
         char * ch2= &name[0];
         
-        char  ch[32];
+        char  ch[BSZ];
         sprintf(ch,"%d",channel);
         strcat(ch," "); strcat(ch,ch2);
-        char out0[32]="\0";
+        char out0[BSZ]="\0";
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
         msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
         //*********************************************************************
     }
-    
-    
-    int escon::table(string c_inputs)//maping the indexes to channels.
+
+void escon::press_preset(string pad,int preset) //making a pad controlling a preset when pressed
+    {
+        if(rec(pad))//if pad was pressed
+            {
+                snd("preset",preset); //press preset 2.
+                snd(pad,0);    //turn off pad.
+            }
+    }
+
+    int escon::table(string c_inputs)//maping the indexes to channels as formatted by the app.
     {
         char * c_input= &c_inputs[0];
         int index=0;
@@ -181,6 +196,31 @@ escon::escon()
         if(strcmp(c_input,"preset")==0) index=200;
         return(index);
     }
-    
+    int escon::hash(int index)//mapping into array of 41 elements
+        {
+            if (index>99&&index<150)
+                return index-80;
+            if (index==150) return 39;
+            if (index==200) return 40;
+            return index;
+        }
+    int escon::re_hash(int index)//mapping into array of 41 elements
+        {
+            if (index>19&&index<39)
+                return index+80;
+                if (index==39) return 150;
+                if (index==40) return 200;
+            return index;
+        }
 
 
+    void escon::all_s(int n)
+    {
+        for (int i=0;i<20;i++)
+        snd(i,n);
+    }
+    void escon::all_p(int n)
+    {
+    for (int i=100;i<120;i++)
+        snd(i,n);
+    }
