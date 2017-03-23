@@ -1,6 +1,10 @@
 //EasyController - 42%noir, 2017.
 
+#include <sys/types.h>
+#include <sys/ipc.h>
 #include <sys/msg.h>
+#include <stdio.h>
+#include <errno.h>
 #include "escon.h"
 
     
@@ -96,22 +100,21 @@ escon::escon()
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
         msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
+
     }
-    void escon::snd(string c_inputs, float val)
+    //wait if too many messages.
+    void escon::snd_wait(int channel, int val)// can influence framerate only used in setup.
     {
-        int channel=table(c_inputs);
-        
-        
         char  ch[BSZ];
         sprintf(ch,"%d",channel);
         char  ch2[8];
-        sprintf(ch2, "%3.*f", 6,val);
+        sprintf(ch2, "%d",val);
         strcat(ch," "); strcat(ch,ch2);
         char out0[BSZ]="\0";
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
-        msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
+        msgsnd(msgids, &sbuf,  sbuf_length, 0);
     }
     void escon::snd(int channel, int val)
     {
@@ -124,7 +127,9 @@ escon::escon()
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
-        msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);    }
+        msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
+    
+    }
 
     void escon::label(string c_inputs, string name)
     {
@@ -142,14 +147,20 @@ escon::escon()
         //*********************************************************************
     }
 
-void escon::press_preset(string pad,int preset) //making a pad controlling a preset when pressed
+void escon::set_to_preset(string pad,int preset) //making a pad controlling a preset when pressed
     {
         if(rec(pad))//if pad was pressed
             {
-                snd("preset",preset); //press preset 2.
+                snd("preset",preset); //press preset.
                 snd(pad,0);    //turn off pad.
             }
     }
+void escon::call_preset(int preset) //making a pad controlling a preset when pressed
+{
+    
+        snd_wait(200,preset); //press preset
+
+}
 
     int escon::table(string c_inputs)//maping the indexes to channels as formatted by the app.
     {
@@ -196,7 +207,7 @@ void escon::press_preset(string pad,int preset) //making a pad controlling a pre
         if(strcmp(c_input,"preset")==0) index=200;
         return(index);
     }
-    int escon::hash(int index)//mapping into array of 41 elements
+    int escon::hash(int index)//mapping into array of 41 elements, we will use 42.
         {
             if (index>99&&index<150)
                 return index-80;
@@ -217,10 +228,11 @@ void escon::press_preset(string pad,int preset) //making a pad controlling a pre
     void escon::all_s(int n)
     {
         for (int i=0;i<20;i++)
-        snd(i,n);
+            snd_wait(i,n);
+
     }
     void escon::all_p(int n)
     {
     for (int i=100;i<120;i++)
-        snd(i,n);
+        snd_wait(i,n);
     }

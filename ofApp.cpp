@@ -14,9 +14,10 @@ void ofApp::setup(){
     ctrl.label("p4b","pre-2");
    
     //some initials
-    ctrl.all_s(64); //put all knobs (s1-s8,s1b-s8b) on 64.  (doesn't effect on maste slides s0 and s0b)
-    ctrl.all_p(0); // turn off all pads.
-    ctrl.snd("s2b",0);//snd specific value. (doesn't effect on maste slides s0 and s0b)
+    ctrl.all_s(34); //put all knobs (s1-s8,s1b-s8b) on 64.  (doesn't effect on maste slides s0 and s0b)
+    ctrl.all_p(1); // turn off all pads.
+    ctrl.snd("p3b",0);//snd specific value. (doesn't effect on maste slides s0 and s0b)
+    ctrl.call_preset(1);//presets are only for knobs.
 }
 
 
@@ -24,21 +25,21 @@ void ofApp::setup(){
 void ofApp::update(){
 
     //Manipulating pad p4b to trigger preset 2 if the preset was defined.
-    ctrl.press_preset("p4b",2);
+   // ctrl.set_to_preset("p4b",2);
     
     
     //Moving s3 opposite to moving s1.
-    ctrl.snd("s3",127-ctrl.rec("s1"));
+    //ctrl.snd("s3",127-ctrl.rec("s1"));
     
     }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     //recieving and re-mapping
-    int value1=  ctrl.rec("s1");//value from knob 1.
+    int   value1=  ctrl.rec("s1");//value from knob 1.
     float value2= ctrl.rec("s1",0.1,1.1);//value from knob 2 with remapped to from 0-127 to 0.1-1.1
     float value2b=ctrl.rec("s2b",-0.5,5.0);//value from knob 2b witb 0.1-1.1
-    int valuep1=ctrl.rec("p1");//value from button p1, you can choose from p1-p8 and p1b-p8b
+    int   valuep1=ctrl.rec("p1");//value from button p1, you can choose from p1-p8 and p1b-p8b
     
     
 

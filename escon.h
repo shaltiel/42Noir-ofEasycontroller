@@ -2,7 +2,7 @@
 #include <sys/msg.h>
 #include <string>
 #define BSZ 16
-#define MSZ 64
+#define MSZ 16
 using namespace std;
 class escon
 {
@@ -25,6 +25,7 @@ private:
     message_buf sbuf;
     size_t buf_length,sbuf_length;
     int indexin[42];
+
     
 public:
     escon();
@@ -35,10 +36,11 @@ public:
     float rec(string,float, float);//return remapped value from  string index
     int rec(string);
     void snd(string,int);
-    void snd(string,float);
+    void snd_wait(int,int);
     void snd(int,int);
     void label(string,string); //send label to controller
-    void press_preset(string,int);
+    void set_to_preset(string,int);
+    void call_preset(int);
     int table(string); //int index to string index
     int hash(int);
     int re_hash(int);
