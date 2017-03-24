@@ -6,8 +6,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     //some labeling
-    ctrl.label("s1","master");
-    ctrl.label("s4","bright");
+    ctrl.label("s1","OF1");
+    ctrl.label("s3","OF2");
     ctrl.label("s6","points");
     ctrl.label("p1","on/off");
     ctrl.label("p2b","start");
@@ -15,21 +15,21 @@ void ofApp::setup(){
    
     //some initials
     ctrl.all_s(34); //put all knobs (s1-s8,s1b-s8b) on 64.  (doesn't effect on maste slides s0 and s0b)
-    ctrl.all_p(1); // turn off all pads.
-    ctrl.snd("p3b",0);//snd specific value. (doesn't effect on maste slides s0 and s0b)
-    ctrl.call_preset(1);//presets are only for knobs.
+    ctrl.all_p(0); // turn off all pads.
+    //ctrl.snd("p3b",0);//snd specific value. (doesn't effect on maste slides s0 and s0b)
+  ctrl.call_preset(1);//presets are only for knobs.
 }
 
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
-    //Manipulating pad p4b to trigger preset 2 if the preset was defined.
-   // ctrl.set_to_preset("p4b",2);
+    //Manipulating pad p4b to trigger preset 2 if the preset was defined, IN THE UPDATE.
+    ctrl.set_to_preset("p4b",2);
     
     
     //Moving s3 opposite to moving s1.
-    //ctrl.snd("s3",127-ctrl.rec("s1"));
+   // ctrl.snd("s3",127-ctrl.rec("s1"));
     
     }
 

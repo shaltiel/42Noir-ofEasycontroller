@@ -17,7 +17,6 @@ escon::escon()
         msgflg= IPC_CREAT | 0666;
         sbuf.mtype = 1;
         this->snd("activate",1);//send activation on to easycontroller.
-        //
     }
     escon::~escon()
     {
