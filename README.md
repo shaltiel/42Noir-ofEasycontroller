@@ -58,7 +58,7 @@ Application for using midi-controllers in an easy and convinient way across max/
 ```
  #### Presets
 ```c++
-    void set_to_preset(string,int);// set a pad  with string name to control a preset number (in escon::update use: set_to_preset("p2",2) to call preset 2 with pad 2)
+    void escon::set_to_preset(string,int);// set a pad  with string name to control a preset number (in escon::update use: set_to_preset("p2",2) to call preset 2 with pad 2)
     
     void escon::call_preset(int); // call a preset (use in escon::setup function)
     
