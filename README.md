@@ -13,7 +13,7 @@ Application for using midi-controllers in an easy and convinient way across max/
     Alternatively, download all files and run the example ofapp to see how to call values (easy.rec("s1")), and to label your knob in the application. 
    
 <a href="url"><img src="https://github.com/shaltiel/ofEasycontroller/blob/master/Hanging.gif" align="center" height="270" width="480" ></a>
-# Functionality
+# Usage
 * Easymapping of midi-controllers.
 * Labeling knobs and pads.
 * Re-mapping values.
@@ -25,23 +25,44 @@ Application for using midi-controllers in an easy and convinient way across max/
 
 <a href="url"><img src="http://42noir.com/wp-content/uploads/2016/12/3-screenshot@2x-1.png" align="left" height="200" width="300" ></a>
 
- char * rec();//receive raw string message
-    int rec(int); //give value in index of the controller, see table function.
-    float rec(int,float,float);//return remapped value from index
-    float rec(string,float, float);//return with a new range from string index
-    int rec(string);
-    void snd(string,int);
-    void snd_wait(int,int);
-    void snd(int,int);
-    void label(string,string); //send label to controller
-    void set_to_preset(string,int);// set a knob  with string name to control a preset number (in update function only)
-    void call_preset(int); // call a preset (use in setup function)
-    int table(string); //int index to string index
-    int hash(int);
-    int re_hash(int);
-    void all_s(int);//set all slides to value use in setup function.
-    void all_p(int);//set all pads to value use in setup function.
-};
+###Main functions recieve, send and presets
+
+#### Recieve
+```c++
+    int escon::rec(string); //recieve value from Easycontroller using the string name, e.g. rec("s1"),rec("s4b"), rec("p1b")   for recieving values from slider 1 slider 4 from set b and for pad 1 in set b.
+    
+    float escon::rec(string,float, float); //recieve with a new range from string index of Easycontroller: rec("s3",-1,4.1)
+    
+    int escon::rec(int); //recieve value from Easycontroller, see the table function for the mapping
+     
+    float escon::rec(int,float,float);//recieve new range values from index
+   
+    int escon::table(string); //get index from string
+```
+ #### Send / Label 
+ ```c++
+    void escon::label(string,string); //send a label to controller, e.g. label("s1","of_slid")
+  
+    void escon::snd(string,int); //send a value to midi-controller and Easycontroller
+    
+    void escon::snd_wait(int,int); //send a value to midi-controller using index and wait until the queue is empty (for escon::setup, and  presets)
+    
+    void escon::snd(int,int); //send but do not wait if the queue is full
+```
+ #### Presets
+```c++
+    void set_to_preset(string,int);// set a pad  with string name to control a preset number (in escon::update use: set_to_preset("p2",2) to call preset 2 with pad 2)
+    
+    void escon::call_preset(int); // call a preset (use in escon::setup function)
+    
+    void escon::all_s(int);//set all slides to a value (use in escon::setup function)
+    
+    void escon::all_p(int);//set all pads to a value (use in escon::setup function)
+    
+
+```
+
+
 
 
 
