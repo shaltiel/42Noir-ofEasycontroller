@@ -25,7 +25,8 @@ Application for using midi-controllers in an easy and convinient way across max/
 
 <a href="url"><img src="http://42noir.com/wp-content/uploads/2016/12/3-screenshot@2x-1.png" align="left" height="200" width="300" ></a>
 
-###Main functions recieve, send and presets
+
+### Main functions recieve, send and presets
 
 #### Recieve
 ```c++
