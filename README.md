@@ -25,8 +25,14 @@ Application for using midi-controllers in an easy and convinient way across max/
 
 <a href="url"><img src="http://42noir.com/wp-content/uploads/2016/12/3-screenshot@2x-1.png" align="left" height="200" width="300" ></a>
 
+### In Easycontroller
 
-### Main functions recieve, send and presets
+* To map your midi-controller, choose the instrument from the drop menu, turn on the map midi button, and assign sliders and pads by moving a knob/pad and then pressing the label above the knob/pad in Easycontroller. Press save to use this mapping as defult for next use.
+
+* Press "shift" to store a preset or "alt+shift" to remove a preset.
+
+
+### Functions in OpenFrameworks
 
 #### Recieve
 ```c++
