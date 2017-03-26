@@ -12,13 +12,16 @@ Application for using midi-controllers in an easy and convinient way across max/
     
     Alternatively, download all files and run the example ofapp to see how to call values (easy.rec("s1")), and to label your knob in the application. 
    
-<a href="url"><img src="https://github.com/shaltiel/ofEasycontroller/blob/master/Hanging.gif" align="center" height="270" width="480" ></a>
+<a href="url"><img src="https://github.com/shaltiel/ofEasycontroller/blob/master/Hanging.gif" align="left" height="270" width="480" ></a>
+
+ * Easymapping of midi-controllers.
+ * Labeling knobs and pads.
+ * Re-mapping values.
+ * Applying Presets.
+ * Control both Max and OF together.
+
+
 # Usage
-* Easymapping of midi-controllers.
-* Labeling knobs and pads.
-* Re-mapping values.
-* Applying Presets.
-* Control both Max and OF together.
 
 
 
