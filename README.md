@@ -1,5 +1,5 @@
 # Easycontroller (beta)
-Application for using midi-controllers in an easy and convinient way across max/msp and Openframeworks (Only for Mac users). The idea is to be able to master your midi-controller in live music and visual, independently of the platform used. Initially,  map your midi-controller by touching the knobs and click on the desired knob in th panel. Then you set to work with the  paramters directly in your OF app or Max patch (all can be found in the video here <a href="https://www.youtube.com/watch?v=en2tB_PJq-0">User Guide -Easycontroller</a>). Your knobs can be labeled for each program/song/visualization and you can easily re-map the values, and finally create presets to update your midi-controller for each chapter of your performance. We perform with this tool at 42Noir, we've tested it mostely for Novation and Yamaha controllers, but if your controller has unique midi formating (:/) contact us and we would try to sort it out for you.   
+Application for using midi-controllers in an easy and convinient way across max/msp and Openframeworks (Only for Mac users). The idea is to be able to master your midi-controller in live music and visual, independently of the platform used. Initially,  map your midi-controller by touching the knobs and click on the desired knob in th panel. Then you set to work with the  paramters directly in your OF app and Max patch (all can be found in the video here <a href="https://www.youtube.com/watch?v=en2tB_PJq-0">User Guide -Easycontroller</a>). You can label knobs/pads for each parameter in your program/song/visualization,  assign various value-ranges for each slider, and set presets for your midi-controller in each chapter of your performance. We perform with this tool at 42Noir, we've tested it mostely for Novation and Yamaha controllers, but if your controller has unique midi formating (:/) contact us and we would try to sort it out for you.   
 
 # Instruction for Openframeworks
 
@@ -12,15 +12,15 @@ Application for using midi-controllers in an easy and convinient way across max/
     
     Alternatively, download all files and run the example ofapp to see how to call values (easy.rec("s1")), and to label your knob in the application. 
    
-<a href="url"><img src="https://github.com/shaltiel/ofEasycontroller/blob/master/Hanging.gif" align="center" height="270" width="480" ></a>
+<a href="url"><img src="https://github.com/shaltiel/ofEasycontroller/blob/master/Hanging.gif" align="centre" height="270" width="480" ></a>
+
 # Usage
-* Easymapping of midi-controllers.
-* Labeling knobs and pads.
-* Re-mapping values.
-* Applying Presets.
-* Control both Max and OF together.
 
-
+ * Easymapping of midi-controllers.
+ * Labeling knobs and pads.
+ * assign multiple ranges.
+ * Applying Presets.
+ * Control both Max and OF together.
 
 
 <a href="url"><img src="http://42noir.com/wp-content/uploads/2016/12/3-screenshot@2x-1.png" align="left" height="200" width="300" ></a>
