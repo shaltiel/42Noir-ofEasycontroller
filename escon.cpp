@@ -6,20 +6,33 @@
 #include <stdio.h>
 #include <errno.h>
 #include "escon.h"
+#include <iostream>
 
     
 escon::escon()
     {
+        active= true;
         key = 4458;//recieve to this key
         keys=4456; //send back using this key
-        msgid = msgget(key, 0666);
-        msgids= msgget(keys, 0666);
-        msgflg= IPC_CREAT | 0666;
-        sbuf.mtype = 1;
-        this->snd("activate",1);//send activation on to easycontroller.
-    }
+        msgid = msgget(key, 0666);//connecting to easycontrollers message qeueus
+        
+
+            if (-1 == (msgids=msgget(keys, IPC_EXCL |0666)))
+            {
+            if (errno==2)//easycontroller is not open
+                printf("Easycontroller is not open");
+       
+            }
+            else
+                {
+                    sbuf.mtype = 1;
+                    this->snd("activate",1);
+                }
+        
+            }
     escon::~escon()
     {
+     
         this->snd("activate",0);
         msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);//disconnect easycontroller.
     }
@@ -98,7 +111,7 @@ escon::escon()
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
-        msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
+       msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
 
     }
     //wait if too many messages.
@@ -113,7 +126,7 @@ escon::escon()
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
-        msgsnd(msgids, &sbuf,  sbuf_length, 0);
+      if (active)  msgsnd(msgids, &sbuf,  sbuf_length,0);
     }
     void escon::snd(int channel, int val)
     {
@@ -126,7 +139,7 @@ escon::escon()
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
-        msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
+     if (active)   msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
     
     }
 
@@ -142,7 +155,7 @@ escon::escon()
         strcpy(out0,ch);
         (void) strcpy(sbuf.mtext, out0);
         sbuf_length = strlen(sbuf.mtext) + 1 ;
-        msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
+      if (active)  msgsnd(msgids, &sbuf,  sbuf_length, IPC_NOWAIT);
         //*********************************************************************
     }
 
@@ -227,11 +240,17 @@ void escon::call_preset(int preset) //making a pad controlling a preset when pre
     void escon::all_s(int n)
     {
         for (int i=0;i<20;i++)
+        {
             snd_wait(i,n);
+            indexin[i]=n;
+        }
 
     }
     void escon::all_p(int n)
     {
-    for (int i=100;i<120;i++)
-        snd_wait(i,n);
+        for (int i=100;i<120;i++)
+        {
+            snd_wait(i,n);
+            indexin[i]=n;
+        }
     }

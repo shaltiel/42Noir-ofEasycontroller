@@ -24,7 +24,7 @@ private:
     int msgflg;
     message_buf sbuf;
     size_t buf_length,sbuf_length;
-    int indexin[42];
+    int indexin[42]; bool active;
 
     
 public:

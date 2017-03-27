@@ -14,10 +14,9 @@ void ofApp::setup(){
     ctrl.label("p4b","pre-2");
    
     //some initials
-    ctrl.all_s(34); //put all knobs (s1-s8,s1b-s8b) on 64.  (doesn't effect on maste slides s0 and s0b)
+    ctrl.all_s(64); //put all knobs (s1-s8,s1b-s8b) on 64.  (doesn't effect on maste slides s0 and s0b)
     ctrl.all_p(0); // turn off all pads.
-    //ctrl.snd("p3b",0);//snd specific value. (doesn't effect on maste slides s0 and s0b)
-  ctrl.call_preset(1);//presets are only for knobs.
+    ctrl.call_preset(1);//presets are only for knobs.
 }
 
 
