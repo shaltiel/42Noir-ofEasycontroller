@@ -17,20 +17,28 @@ void ofApp::setup(){
     ctrl.all_s(64); //put all knobs (s1-s8,s1b-s8b) on 64.  (doesn't effect on maste slides s0 and s0b)
     ctrl.all_p(0); // turn off all pads.
     ctrl.call_preset(1);//presets are only for knobs.
+    playaround=1;
 }
 
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    
+    
     //Manipulating pad p4b to trigger preset 2 if the preset was defined, IN THE UPDATE.
     ctrl.set_to_preset("p4b",2);
     
     
     //Moving s3 opposite to moving s1.
-   // ctrl.snd("s3",127-ctrl.rec("s1"));
+    //ctrl.snd("s3",127-ctrl.rec("s1"));
     
-    }
+    //playing with the pads
+    if(playaround%10==0)
+    ctrl.snd(playaround%9+100,0);
+    playaround++;
+    if(playaround%10-1==0)
+    ctrl.snd(playaround%9+100,1);
+}
 
 //--------------------------------------------------------------
 void ofApp::draw(){
