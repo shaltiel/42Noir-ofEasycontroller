@@ -1,16 +1,16 @@
 # Easycontroller (beta)
-Application for using midi-controllers in an easy and convinient way across max/msp and Openframeworks (Only for Mac users). The idea is to be able to master your midi-controller in live music and visual, independently of the platform used. Initially,  map your midi-controller by touching the knobs and click on the desired knob in th panel. Then you set to work with the  paramters directly in your OF app and Max patch (all can be found in the video here <a href="https://www.youtube.com/watch?v=en2tB_PJq-0">User Guide -Easycontroller</a>). You can label knobs/pads for each parameter in your program/song/visualization,  assign various value-ranges for each slider, and set presets for your midi-controller in each chapter of your performance. We perform with this tool at 42Noir, we've tested it mostely for Novation and Yamaha controllers, but if your controller has unique midi formating (:/) contact us and we would try to sort it out for you.   
+Application for using midi-controllers in an easy and convinient way across max/msp and Openframeworks (Only for Mac users). The idea is to be able to master your midi-controller in live music and visual, independently of the platform used. Initially,  map your midi-controller by touching the knobs and click on the desired knob in th panel. Then you set to work with the  paramters directly in your OF app and Max patch. You can label knobs/pads for each parameter in your program/song/visualization,  assign various value-ranges for each slider, and set presets for your midi-controller in each chapter of your performance. We perform with this tool at 42Noir, we've tested it mostely for Novation and Yamaha controllers, but if your controller has unique midi formating (:/) contact us and we would try to sort it out for you.   
 
 # Instruction for Openframeworks
 
 1. Download the application in
  <a href="http://www.42noir.com/es">http://www.42noir.com/es</a>
 
-2. Follow the guide in the page to see how to install and assigne your midi-controller, and also watch how to use Easycontroller with Max/MSP.
+2. Follow the guide in the page to see how to install and assigne your midi-controller, and also watch how to use Easycontroller with Max/MSP. 
 
  3. Download the dependant class files: escon.h and escon.cpp and add them to your openframework target files or use it next to a specific programm. In your ofapp.h include the "escon.h" and create an object member of escon (e.g. escon easy). Then use the member functions label, rec, snd, to recieve/send parameters from/to the controller.
     
-    Alternatively, download all files and run the example ofapp to see how to call values (easy.rec("s1")), and to label your knob in the application. 
+    Alternatively, download all files and run the example ofapp to see how to call values (easy.rec("s1")), and to label your knobs in the application. A short guide: <a href="https://www.youtube.com/watch?v=p2aoKF6KGdI&t=2s">EasyController with OF</a>
    
 <a href="url"><img src="https://github.com/shaltiel/ofEasycontroller/blob/master/Hanging.gif" align="centre" height="270" width="480" ></a>
 
